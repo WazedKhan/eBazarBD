@@ -45,7 +45,7 @@ class Product(models.Model):
     discount = models.FloatField()
     image = models.ImageField(upload_to = 'products', blank = True, null = True)
     sub_cate = models.ForeignKey(SubCategory, on_delete=models.CASCADE, blank=True, null=True)
-    brand_name = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    brand_name = models.ForeignKey(Brand, on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
