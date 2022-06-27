@@ -5,6 +5,7 @@ from product.models import Product
 
 def home(request):
     product = {
-        'products':Product.objects.all()
+        'products':Product.objects.all(),
+        'product': Product.objects.first()
     }
     return render(request, 'product/index.html', product)

@@ -6,7 +6,6 @@
 
 
 {% block content %}
-
 <section class="container pt-5">
     <!-- Heading-->
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
@@ -15,9 +14,9 @@
     </div>
     <!-- Grid-->
     <div class="row pt-2 mx-n2">
-      <!-- Product-->
       {% for product in products %}
       <!-- Product-->
+
         <div class="col-lg-3 col-md-4 col-sm-6 px-2">
             <div class="card product-card">
                 <div class="product-card-actions d-flex align-items-center"><a class="btn-action nav-link-style me-2" href="#">
@@ -27,7 +26,7 @@
                     </button>
                 </div>
                     <a class="card-img-top d-block overflow-hidden" href="shop-single-v2.html">
-                        <img src="  " alt="Product">
+                        <img src=" {{ product.image.url }} " alt="ok">
                     </a>
                     <div class="card-body py-2"><a class="product-meta d-block fs-xs pb-1" href="#"> {{ product.sub_cate }} </a>
                         <h3 class="product-title fs-sm"><a href="shop-single-v2.html"> {{ product.name }} </a></h3>
