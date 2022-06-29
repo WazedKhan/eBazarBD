@@ -176,15 +176,31 @@ function openCity(evt, cityName) {
             <h3 class="section-title">Recently viewed</h3>
         </header>
 
-        <div class="row gy-3">
-            {% for product in products %}
-            <div class="col-lg-2 col-md-4 col-4">
-                <a href="#" class="img-wrap">
-                    <img height="200" width="200" class="img-thumbnail" src={{ product.image.url }}>
-                </a>
-            </div> <!-- col.// -->
-            {% endfor %}
-        </div> <!-- row end.// -->
+        <div class="row">
+
+          {% for product in products %}
+
+          <div class="col-lg-3 col-md-6 col-sm-6">
+
+            <figure class="card card-product-grid">
+              <a href={% url 'product-details' product.id %}>
+                <div class="img-wrap">
+                  <img src={{ product.image.url}}>
+                </div>
+              </a>
+              <figcaption class="info-wrap border-top">
+                <div class="price-wrap">
+                  <span class="price">BDT {{ product.price }}</span>
+                </div> <!-- price-wrap.// -->
+                <p class="title mb-2 h5">{{ product.name }}</p>
+
+                <a href="#" class="btn btn-danger">Add to cart</a>
+                <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
+              </figcaption>
+            </figure>
+          </div>
+
+          {% endfor %}
 
     </div> <!-- container end.// -->
     </section>
