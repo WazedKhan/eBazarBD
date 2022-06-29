@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
+    'cart.apps.CartConfig',
     'product.apps.ProductConfig',
 
     # Package
