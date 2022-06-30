@@ -1,4 +1,7 @@
+from decimal import Decimal
 from django.contrib.sessions.models import Session
+
+from product.models import Product
 
 class Cart():
 
@@ -28,6 +31,32 @@ class Cart():
 
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
+
+
+    def __iter__(self):
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in = product_ids)
+        cart = self.cart.copy()
+
+        for product in products:
+            cart[str(product.id)]['product'] = product
+
+        for item in cart.values():
+            item['price'] = Decimal(item['price'])
+            item['sub_total'] = Decimal(item['price']) * Decimal(item['quantity'])
+            yield item
+
+
+    def get_total_price(self):
+        return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
+
+    def final_price(self):
+        total_price = self.get_total_price()
+        return total_price + 50
+
+    def products(self):
+        return len(self.cart.keys())
+
 
     def save(self):
         self.session.modified = True

@@ -14,3 +14,8 @@ def add_cart(request):
         cart.add(product, quantity)
         return JsonResponse({'quantity':cart.__len__()})
     return JsonResponse({'ok':'ok'})
+
+
+def list(request):
+    cart = Cart(request)
+    return render(request, 'cart/list.html', {'cart':cart})
