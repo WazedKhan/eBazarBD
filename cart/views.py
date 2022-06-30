@@ -9,8 +9,8 @@ def add_cart(request):
     cart = Cart(request)
     if request.POST.get('action') == 'post':
         productId = request.POST.get('productId')
-        quantity = request.POST.get('quantity')
+        quantity = int(request.POST.get('quantity'))
         product = get_object_or_404(Product, id = productId)
         cart.add(product, quantity)
-        return JsonResponse({'data':'saved'})
+        return JsonResponse({'quantity':quantity})
     return JsonResponse({'ok':'ok'})
