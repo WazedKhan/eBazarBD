@@ -15,17 +15,19 @@ class Cart():
             print('Session is not set yet')
 
 
-    def add(self, product, quantity):
-        productId = product.id
-        self.quantity = int(quantity)
-        print(type(self.quantity))
-        if productId not in self.cart:
-            self.cart[productId] = {'price':product.price, 'quantity':quantity}
-        elif productId in self.cart:
-            self.cart[productId]['quantity'] += self.quantity
-        print(self.__len__())
-        self.session.modified = True
+    def add(self, product, qty):
+        product_id = str(product.id)
+
+        if product_id in self.cart:
+            self.cart[product_id]['quantity'] = qty
+        else:
+            self.cart[product_id] = {'price': str(product.price), 'quantity': qty}
+
+        self.save()
 
 
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
+
+    def save(self):
+        self.session.modified = True
