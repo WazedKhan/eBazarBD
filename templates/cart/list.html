@@ -17,7 +17,7 @@
 
 
                     {% for item in cart %}
-                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div class="row mb-4 d-flex justify-content-between align-items-center product-item" data-index="{{item.product.id}}">
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
                           src="{{item.product.image.url}}"
@@ -46,15 +46,16 @@
                         <h6 class="mb-0">BDT {{ item.sub_total }}</h6>
                       </div>
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                        <button type="button" id="delete-button" data-index="{{item.product.id}}" class="btn btn-outline-secondary btn-sm delete-button"><i class="fas fa-times"></i></button>
                       </div>
+                      <hr class="my-4">
                     </div>
-                    <hr class="my-4">
+
                     {% endfor %}
 
 
                     <div class="pt-5">
-                      <h6 class="mb-0"><a href="#!" class="text-body"><i
+                      <h6 class="mb-0"><a href="{% url 'home' %}" class="text-body"><i
                             class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
                     </div>
                   </div>
@@ -66,12 +67,12 @@
 
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">Number of Products: </h5>
-                      <h5>{{cart.products}}</h5>
+                      <h5 id="product-numbers">{{cart.products}}</h5>
                     </div>
 
                     <div class="d-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">Sub Total: </h5>
-                      <h5>BDT {{ cart.get_total_price }}tk</h5>
+                      <h5 id="total-price">BDT {{ cart.get_total_price }}tk</h5>
                     </div>
 
                     <div class="d-flex justify-content-between mb-4">
@@ -83,7 +84,7 @@
 
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total price</h5>
-                      <h5>BDT {{cart.final_price}}tk</h5>
+                      <h5 id="final-price">BDT {{cart.final_price}}tk</h5>
                     </div>
 
                     <button type="button" class="btn btn-dark btn-block btn-lg"
@@ -99,4 +100,32 @@
     </div>
   </section>
   <div class="p-md-2"></div>
+
+  <script>
+
+  // Delete Item
+  $(document).on('click', '.delete-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url 'cart:remove' %}',
+      data: {
+        productid: $(this).data('index'),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        $('.product-item[data-index="' + prodid + '"]').remove();
+        document.getElementById("product-numbers").innerHTML = json.product_numbers;
+        document.getElementById("total-price").innerHTML = json.total_price
+        document.getElementById("final-price").innerHTML = json.final_price
+        document.getElementById("cart-quantity").innerHTML = json.quantity
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+
+
+  </script>
 {% endblock content %}
