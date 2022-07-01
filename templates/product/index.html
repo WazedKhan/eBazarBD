@@ -10,26 +10,22 @@
 	<main class="card p-3">
 		<div class="row">
 			<aside class="col-lg-3">
-				<nav class="nav flex-column nav-pills">
-				  <a class="nav-link active" aria-current="page" href="#">Electronics</a>
-				  <a class="nav-link" href="#">Clothes and wear</a>
-				  <a class="nav-link" href="#">Home interiors</a>
-				  <a class="nav-link" href="#">Computer and tech</a>
-				  <a class="nav-link" href="#">Tools, equipments</a>
-				  <a class="nav-link" href="#">Sports and outdoor</a>
-				  <a class="nav-link" href="#">Animal and pets</a>
-				  <a class="nav-link" href="#">Machinery tools</a>
-				  <a class="nav-link" href="#">Other products</a>
+				<nav class="nav flex-column nav-pills overflow">
+          <div class="scrollbar scrollbar-primary">
+            <div class="force-overflow">
+              {% for category in categories %}
+              <a class="nav-link" href="#">{{category.name}}</a>
+              {% endfor %}
+            </div>
+          </div>
 				</nav>
+
 			</aside>
+
 			<div class="col-lg-9">
-				<article class="card-banner p-5 bg-primary" style="height: 360px">
-					<div style="max-width: 500px">
-			        <h2 class="text-white">Great products with <br> best deals </h2>
-			        <p class="text-white">No matter how far along you are in your sophistication as an amateur astronomer, there is always one.</p>
-			        <a href="#" class="btn btn-warning"> View more </a>
-			        </div>
-				</article>
+				<div class="shadow-lg bg-white rounded">
+          <img class="d-block w-100" src="https://mdbcdn.b-cdn.net/img/Photos/Slides/img%20(23).webp" alt="First slide">
+        </div>
 			</div>
 		</div>
 	</main>
