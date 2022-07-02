@@ -90,8 +90,12 @@ WSGI_APPLICATION = 'eBazar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ddbvutfe72ojfg',
+        'USER': 'efqqepvkuiswzo',
+        'PASSWORD': '123c055872d7460ff4dd001bd9e26e9c84ff0d12c11ffc0c3ef4dd4b4d34df9d',
+        'HOST': 'ec2-44-205-41-76.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
