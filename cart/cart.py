@@ -11,11 +11,6 @@ class Cart():
         if 's_key' not in request.session:
             cart = self.session['s_key'] = {}
         self.cart = cart
-        try:
-            s_id = request.session._session_key
-            print(Session.objects.get(pk = s_id).get_decoded())
-        except:
-            print('Session is not set yet')
 
 
     def add(self, product, qty):

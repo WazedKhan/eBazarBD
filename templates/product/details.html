@@ -67,9 +67,7 @@
               </div> <!-- col.// -->
             </div> <!-- row.// -->
 
-            <a href="#" class="btn  btn-warning"> Buy now </a>
-            <button class="btn btn-danger" id="add-cart" value="{{product.id}}"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
-            <a href={% url 'cart:add_cart' %} class="btn  btn-light"> <i class="me-1 fa fa-heart"></i> Save </a>
+            <button class="btn btn-dark btn-lg btn-block" style="width: 100% !important;" id="add-cart" value="{{product.id}}"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </button>
 
           </article> <!-- product-info-aside .// -->
         </main> <!-- col.// -->
@@ -194,8 +192,7 @@ function openCity(evt, cityName) {
                 </div> <!-- price-wrap.// -->
                 <p class="title mb-2 h5">{{ product.name }}</p>
 
-                <a href="#" class="btn btn-danger">Add to cart</a>
-                <a href="#" class="btn btn-light btn-icon"> <i class="fa fa-heart"></i> </a>
+                <a href={% url 'product-details' product.id %} class="btn btn-dark btn-lg btn-block" style="width: 100% !important;">Select Options</a>
               </figcaption>
             </figure>
           </div>
