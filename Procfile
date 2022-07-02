@@ -1,1 +1,1 @@
-web:gunicorn eBazar.wsgi
+web: gunicorn eBazar.wsgi
