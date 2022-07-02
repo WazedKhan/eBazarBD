@@ -106,28 +106,21 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#">Hot offers</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Popular</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Projects</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Menu item</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Menu name</a>
-					</li>
+
+					{% for category in categories %}
+
 					<li class="nav-item dropdown">
 						<a class="dropdown-toggle nav-link" href="#" data-bs-toggle="dropdown">
-							Others
+							{{ category.name }}
 						</a>
 						<ul class="dropdown-menu">
-							<li> <a class="dropdown-item" href="#">Submenu one </a> </li>
-							<li> <a class="dropdown-item" href="#">Submenu two</a> </li>
-							<li> <a class="dropdown-item" href="#">Submenu three</a> </li>
+							<li> <a class="dropdown-item" href="#"> All </a> </li>
+							{% for item in category.sub_category.all %}
+								<li> <a class="dropdown-item" href="#"> {{ item.name }} </a> </li>
+							{% endfor %}
 						</ul>
 					</li>
+					{% endfor %}
 				</ul>
 			</div> <!-- collapse end.// -->
 		</div> <!-- container end.// -->
