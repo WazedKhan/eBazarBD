@@ -203,7 +203,7 @@
         <main class="col-lg-9">
 
         <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-            <strong class="d-block py-2">32 Items found </strong>
+            <strong class="d-block py-2"> {{ products|length }} Items found </strong>
             <div class="ms-auto">
               <select class="form-select d-inline-block w-auto">
                   <option value="0">Best match</option>
@@ -224,7 +224,7 @@
 
         <!-- ========= content items ========= -->
         <div class="row">
-
+          {% if products %}
             {% for product in products %}
 
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -246,6 +246,10 @@
             </div>
 
             {% endfor %}
+          {% else %}
+          <h3 style="padding-bottom: 40%;">Sorry, Products are not available</h3>
+          <br><br><br><br>
+          {% endif %}
 
           </div> <!-- row end.// -->
 
