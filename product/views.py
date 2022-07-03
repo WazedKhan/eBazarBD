@@ -28,7 +28,7 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         if self.kwargs.get('pk'):
-            return models.Product.objects.filter(pk = self.kwargs.get('pk'))
+            return models.Product.objects.filter(sub_cate = self.kwargs.get('pk'))
         else:
             return models.Product.objects.all()
 

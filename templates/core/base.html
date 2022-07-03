@@ -116,7 +116,7 @@
 						<ul class="dropdown-menu">
 							<li> <a class="dropdown-item" href="#"> All </a> </li>
 							{% for item in category.sub_category.all %}
-								<li> <a class="dropdown-item" href="#"> {{ item.name }} </a> </li>
+								<li> <a class="dropdown-item" href= {%url 'list-view' item.id %} > {{ item.name }} </a> </li>
 							{% endfor %}
 						</ul>
 					</li>
