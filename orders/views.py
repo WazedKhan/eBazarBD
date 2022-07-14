@@ -1,8 +1,10 @@
 from decimal import Decimal
-from multiprocessing import context
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from django.contrib.sessions.models import Session
 
 from cart.cart import Cart
 from orders.models import Order, OrderItem
@@ -23,14 +25,33 @@ def place(request):
         name = request.POST.get('full_name')
         phone = request.POST.get('phone')
         address = request.POST.get('address')
-        post_code = request.POST.get('post_code')
+        post_code = request.POST.get('post_code'),
+        totalPrice = Decimal(cart.final_price())
 
-        Order.objects.create(
+        order = Order.objects.create(
+            user = request.user,
             full_name = name,
             phone = phone,
             address = address,
             post_code = post_code,
             total_paid = Decimal(cart.final_price()),
         )
+
+        for item in cart:
+            OrderItem.objects.create(
+                order = order,
+                product = item['product'],
+                price = Decimal(item['price']),
+                discount = Decimal(1),
+                quantity = item['quantity']
+            )
+        cart.clear()
+
+        subject = 'Order Received'
+        from_email = settings.DEFAULT_FROM_EMAIL
+        message = 'This is my test message'
+        recipient_list = ['wazedkhan119399@gmail.com']
+        html_message = f'<h1>Dear {request.user.first_name}</h1>'
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message)
 
     return JsonResponse({"Status ":200, 'total_price':cart.final_price(),})
