@@ -6,7 +6,7 @@ from product.models import Product
 
 def home(request):
     product = {
-        'products':Product.objects.all()
+        'products':Product.objects.all().order_by('-id')[:4]
     }
     return render(request, 'product/index.html', product)
 
