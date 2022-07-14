@@ -13,7 +13,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    total_paid = models.DecimalField(max_digits=5, decimal_places=2)
+    total_paid = models.DecimalField(max_digits=100, decimal_places=2)
     billing_status = models.BooleanField(default=False)
 
 
@@ -21,14 +21,14 @@ class Order(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
-    price = models.DecimalField(max_digits=5, decimal_places=2)
-    discount = models.DecimalField(max_digits=5, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    discount = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
