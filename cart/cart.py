@@ -1,4 +1,5 @@
 from decimal import Decimal
+from django.conf import settings
 from django.contrib.sessions.models import Session
 
 from product.models import Product
@@ -54,7 +55,7 @@ class Cart():
 
     def final_price(self):
         total_price = self.get_total_price()
-        return total_price + 50
+        return int(total_price + 50)
 
     def products(self):
         return len(self.cart.keys())
@@ -62,3 +63,8 @@ class Cart():
 
     def save(self):
         self.session.modified = True
+
+    def clear(self):
+            # Remove basket from session
+        del self.session['s_key']
+        self.save()
