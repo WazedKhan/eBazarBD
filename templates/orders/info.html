@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<div class="container">
+    <br>
+    <form action="{% url 'order-place' %}" method="post">
+        {% csrf_token %}
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+
+        <!-- Text input -->
+        <div class="form-outline mb-4">
+          <input type="text" name="full_name" class="form-control" value="{{ request.user.first_name }} {{ request.user.last_name }}"/>
+          <label class="form-label" for="form6Example3">Full Name</label>
+        </div>
+
+        <!-- Text input -->
+        <div class="form-outline mb-4">
+          <input type="text" name="address"  class="form-control" value="F-25/Caab Colony/Kawla/Dhaka"/>
+          <!-- <input type="text" name="address" class="form-control" placeholder="House/Road/Area/City-Post Code" /> -->
+          <label class="form-label" for="form6Example4">Address</label>
+        </div>
+
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="number" name="post_code" class="form-control" value="1220"/>
+          <label class="form-label" for="form6Example5">Postal Code</label>
+        </div>
+
+        <!-- Number input -->
+        <div class="form-outline mb-4">
+          <input type="number" name="phone" class="form-control" value="01775070922" />
+          <!-- <input type="number" name="phone" class="form-control" /> -->
+          <label class="form-label" for="form6Example6">Phone</label>
+        </div>
+
+        <!-- Number input -->
+        <div class="form-outline mb-4">
+          <input type="number" class="form-control" value="{{ total_price }}" disabled/>
+          <label class="form-label" for="form6Example6">Total Price</label>
+        </div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+          <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+          <label class="form-label" for="form6Example7">Additional information</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-dark btn-block btn-lg mb-4">Place order</button>
+      </form>
+</div>
+
+{% endblock content %}
