@@ -1,0 +1,17 @@
+.order-title-odd-23 {
+    margin-top: 5%;
+    margin-bottom: 35%;
+    text-align: center;
+}
+
+
+.done-link-23{
+    margin-top: 5%;
+    padding: auto;
+    background: rgb(135, 5, 81);
+    width: 23%;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }

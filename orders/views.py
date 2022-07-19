@@ -47,11 +47,11 @@ def place(request):
             )
         cart.clear()
 
-        subject = 'Order Received'
-        from_email = settings.DEFAULT_FROM_EMAIL
-        message = 'This is my test message'
-        recipient_list = ['wazedkhan119399@gmail.com']
-        html_message = f'<h1>Dear {request.user.first_name}</h1>'
-        send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message)
+        # subject = 'Order Received'
+        # from_email = settings.DEFAULT_FROM_EMAIL
+        # message = 'This is my test message'
+        # recipient_list = ['wazedkhan119399@gmail.com']
+        # html_message = f'<h1>Dear {request.user.first_name}</h1>'
+        # send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message)
 
-    return JsonResponse({"Status ":200, 'total_price':cart.final_price(),})
+    return render(request, 'orders/confirm.html')
