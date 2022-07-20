@@ -71,23 +71,11 @@
 						</a>
 			        </div>
 				</div> <!-- col end.// -->
-				<div class="col-lg-5 col-md-12 col-12">
-					<form action="#" class="">
-		              <div class="input-group">
-		                <input type="search" class="form-control" style="width:55%" placeholder="Search">
-		                <select class="form-select">
-		                  <option value="">All type</option>
-		                  <option value="codex">Special</option>
-		                  <option value="comments">Only best</option>
-		                  <option value="content">Latest</option>
-		                </select>
-		                <button class="btn btn-primary">
-		                  <i class="fa fa-search"></i>
-		                </button>
-		              </div> <!-- input-group end.// -->
-		            </form>
-				</div> <!-- col end.// -->
+				<!-- Search Option Starts -->
 
+				{% include "core/search.html" %}
+
+				<!-- Search Option Ends -->
 			</div> <!-- row end.// -->
 		</div> <!-- container end.// -->
 	</section> <!-- header-main end.// -->
