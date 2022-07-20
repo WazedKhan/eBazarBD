@@ -29,6 +29,11 @@ class ProductListView(ListView):
     def get_queryset(self):
         if self.kwargs.get('pk'):
             return models.Product.objects.filter(sub_cate = self.kwargs.get('pk'))
+
+        if self.request.method == "GET":
+            print('-'*80, self.request.GET.get('search'))
+            return models.Product.objects.filter(name__contains = self.request.GET.get('search'))
+
         else:
             return models.Product.objects.all()
 
