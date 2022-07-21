@@ -1,4 +1,5 @@
 from django.views.generic import DetailView, ListView
+from django.db.models import Q
 from django.shortcuts import render
 from product import models
 
@@ -31,7 +32,8 @@ class ProductListView(ListView):
             return models.Product.objects.filter(sub_cate = self.kwargs.get('pk'))
 
         if self.request.method == "GET":
-            return models.Product.objects.filter(name__contains = self.request.GET.get('search'))
+            lookups = Q(name__contains  = self.request.GET.get('search')) | Q(price__contains  = self.request.GET.get('search'))
+            return models.Product.objects.filter(lookups)
 
         else:
             return models.Product.objects.all()
