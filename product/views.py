@@ -31,9 +31,15 @@ class ProductListView(ListView):
             return models.Product.objects.filter(sub_cate = self.kwargs.get('pk'))
 
         if self.request.method == "GET":
-            print('-'*80, self.request.GET.get('search'))
             return models.Product.objects.filter(name__contains = self.request.GET.get('search'))
 
         else:
             return models.Product.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset  = self.get_queryset()
+        context["searched_for"] = self.request.GET.get('search')
+        return context
+
 
