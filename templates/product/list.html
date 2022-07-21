@@ -205,20 +205,9 @@
         <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
             <strong class="d-block py-2"> {{ products|length }} Items found </strong>
             <div class="ms-auto">
-              <select class="form-select d-inline-block w-auto">
-                  <option value="0">Best match</option>
-                  <option value="1">Recommended</option>
-                  <option value="2">High rated</option>
-                  <option value="3">Randomly</option>
-              </select>
-              <div class="btn-group">
-                <a href="#" class="btn btn-light" data-bs-toggle="tooltip" title="" data-bs-original-title="List view">
-                  <i class="fa fa-bars"></i>
-                </a>
-                <a href="#" class="btn btn-light active" data-bs-toggle="tooltip" title="" data-bs-original-title="Grid view">
-                  <i class="fa fa-th"></i>
-                </a>
-              </div> <!-- btn-group end.// -->
+              {% if searched_for %}
+                <strong>Showing Results for: <span class="h3" style="color: blue;">{{ searched_for }}</span> </strong>
+              {% endif %}
             </div>
         </header>
 
@@ -247,8 +236,15 @@
 
             {% endfor %}
           {% else %}
-          <h3 style="padding-bottom: 40%;">Sorry, Products are not available</h3>
-          <br><br><br><br>
+          <div class="container">
+            <div class="order-title-odd-23">
+                <h1>Product Not Found <i class="fa-solid fa-heart-crack"></i> </h1>
+                <span>Sorry We could not the product for you</span>
+                <br>
+
+                <a class="done-link-23 btn btn-dark" type="button" href= {% url 'home' %} >Home</a>
+            </div>
+          </div>
           {% endif %}
 
           </div> <!-- row end.// -->
