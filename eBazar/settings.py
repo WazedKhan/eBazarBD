@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
+    'controllers.apps.ControllersConfig',
 
     # Package
     'fontawesome_free',
