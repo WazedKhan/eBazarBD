@@ -9,6 +9,7 @@ urlpatterns = [
     path('cart/', include('cart.urls')),
     path('orders/', include('orders.urls')),
     path('account/', include('user.urls')),
+    path('ebazar/admin', include('admin.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
