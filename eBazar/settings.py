@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Package
     'fontawesome_free',
     'django_bootstrap5',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
