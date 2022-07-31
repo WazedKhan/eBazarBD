@@ -1,6 +1,8 @@
 {% load static %}
 {% load django_bootstrap5 %}
 {% load humanize %}
+{% load bootstrap %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -56,7 +58,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Order Controll
                             </a>
-                            <a class="nav-link" href={% url 'admin-home' %}>
+                            <a class="nav-link" href={% url 'product-create' %}>
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Product Controll
                             </a>

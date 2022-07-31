@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.db.models import Count, Q
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from django.http import HttpResponseForbidden
+from django.views.generic import ListView, CreateView
+
 
 from orders.models import Order
 from product.models import Product
@@ -25,5 +29,18 @@ class OrderListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context[""] = 
+        # context[""] =
         return context
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'controllers/product/create.html'
+    fields = ['name','price','discount','sub_cate','brand_name','image']
+    success_url	= reverse_lazy('admin-home')
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+
+        return super(ProductCreateView, self).form_valid(form)
+

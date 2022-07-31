@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'controllers.apps.ControllersConfig',
 
     # Package
+    'crispy_forms',
+    'bootstrapform',
     'fontawesome_free',
     'django_bootstrap5',
     'django.contrib.humanize'
@@ -153,3 +155,6 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = 'b9df680b34ed30'
 EMAIL_HOST_PASSWORD = 'ce7805afd277af'
 EMAIL_PORT = '2525'
+
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
