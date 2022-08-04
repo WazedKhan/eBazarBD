@@ -19,7 +19,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object'].countVisitor()
-        context["products"] = Product.objects.all()
+        context["products"] = Product.objects.all().order_by('-last_visit')[:4]
         return context
 
 
@@ -43,7 +43,6 @@ class ProductListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["searched_for"] = self.request.GET.get('search')
-        context['popular'] = Product.objects.filter(visited = max )
         return context
 
 
