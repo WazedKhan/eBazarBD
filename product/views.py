@@ -7,7 +7,8 @@ from product.models import Product
 
 def home(request):
     product = {
-        'products':Product.objects.all().order_by('-id')[:4]
+        'products':Product.objects.all().order_by('-id')[:4],
+        'fav_items':Product.objects.all().order_by('-visited')[:4]
     }
     return render(request, 'product/index.html', product)
 
@@ -17,6 +18,7 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['object'].countVisitor()
         context["products"] = Product.objects.all()
         return context
 
@@ -40,8 +42,9 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        queryset  = self.get_queryset()
         context["searched_for"] = self.request.GET.get('search')
+        context['popular'] = Product.objects.filter(visited = max )
         return context
+
 
 

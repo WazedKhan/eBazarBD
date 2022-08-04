@@ -1,3 +1,4 @@
+from email.policy import default
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db import models
@@ -52,8 +53,15 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    visited = models.IntegerField(default = 0)
+    last_visit = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.name
+
+    def countVisitor(self):
+        self.visited += 1
+        self.save()
 
     def save(self):
         super().save()
