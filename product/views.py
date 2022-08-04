@@ -8,7 +8,7 @@ from product.models import Product
 def home(request):
     product = {
         'products':Product.objects.all().order_by('-id')[:4],
-        'fav_items':Product.objects.all().order_by('-visited')[:4]
+        'fav_items':Product.objects.all().order_by('-visited')[:6]
     }
     return render(request, 'product/index.html', product)
 
