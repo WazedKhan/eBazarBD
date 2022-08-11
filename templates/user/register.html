@@ -6,6 +6,10 @@
     <form method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
+        <div class="form-group mb-2">
+            <label for="Phone">Phone Number</label>
+            <input type="phone" name = "phone" class="form-control" id="Phone" placeholder="Phone">
+        </div>
         <button type="submit" class="btn btn-dark ">Submit</button>
     </form>
 
