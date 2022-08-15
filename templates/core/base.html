@@ -48,7 +48,7 @@
 						    <i class="fa fa-user"></i>  <span class="ms-1 d-none d-sm-inline-block"> {{ request.user.username }} </span>
 						</a>
 						{% else %}
-						<a href="#" class="btn btn-light">
+						<a href="{% url 'login' %}" class="btn btn-light">
 						    <i class="fa fa-user"></i>  <span class="ms-1 d-none d-sm-inline-block">Sign in  </span>
 						</a>
 						{% endif %}
