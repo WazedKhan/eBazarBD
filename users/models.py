@@ -1,77 +1,73 @@
-from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
-                                        PermissionsMixin)
-from django.core.mail import send_mail
+from turtle import update
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from django_countries.fields import CountryField
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
-class CustomAccountManager(BaseUserManager):
-
-    def create_superuser(self, email, phone_number, password, **other_fields):
-
-        other_fields.setdefault('is_staff', True)
-        other_fields.setdefault('is_superuser', True)
-        other_fields.setdefault('is_active', True)
-
-        if other_fields.get('is_staff') is not True:
-            raise ValueError(
-                'Superuser must be assigned to is_staff=True.')
-        if other_fields.get('is_superuser') is not True:
-            raise ValueError(
-                'Superuser must be assigned to is_superuser=True.')
-
-        return self.create_user(email, phone_number, password, **other_fields)
-
-    def create_user(self, email, phone_number, password, **other_fields):
-
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, password = None):
+        """
+        Creates and saves a User with the given email and password.
+        """
         if not email:
-            raise ValueError(_('You must provide an email address'))
+            raise ValueError('Users mush have an email')
 
-        email = self.normalize_email(email)
-        user = self.model(email=email, phone_number=phone_number,
-                          **other_fields)
+        user = self.model(email = self.normalize_email(email) )
         user.set_password(password)
-        user.save()
+        user.save(using = self._db)
+        return user
+
+    def create_superuser(self, email, password = None):
+        """
+        Creates and saves a Superuser with the given email and password.
+        """
+        user = self.create_user(email, password = password)
+        user.is_admin = True
+        user.is_staff = True
+        user.is_active = True
+
+        user.save(using = self._db)
         return user
 
 
-class UserBase(AbstractBaseUser, PermissionsMixin):
 
-    email = models.EmailField(_('email address'), unique=True)
-    username = models.CharField(max_length=150, unique=True, blank=True)
+class MyUser(AbstractBaseUser):
+    update_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=150, blank=True)
-    about = models.TextField(_(
-        'about'), max_length=500, blank=True)
-    # Delivery details
-    country = CountryField()
-    phone_number = models.CharField(max_length=15, blank=True, unique=True)
-    postcode = models.CharField(max_length=12, blank=True)
-    address = models.CharField(max_length=150, blank=True)
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    is_sellar = models.BooleanField(default=False)
+    phone = models.CharField(max_length=13, unique=True, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    address = models.CharField(max_length=200, blank=True)
+    email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    is_sellar = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
+    USERNAME_FIELD  = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self) -> str:
+        if self.name:
+            return self.name
+        return self.email
+
+    
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_employee(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
 
 
-    objects = CustomAccountManager()
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['phone_number', 'name']
-
-    class Meta:
-        verbose_name = "Accounts"
-        verbose_name_plural = "Accounts"
-
-    def email_user(self, subject, message):
-        send_mail(
-            subject,
-            message,
-            'l@1.com',
-            [self.email],
-            fail_silently=False,
-        )
-
-    def __str__(self):
-        return self.phone_number
