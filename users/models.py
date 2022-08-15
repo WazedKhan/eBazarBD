@@ -53,7 +53,7 @@ class MyUser(AbstractBaseUser):
             return self.name
         return self.email
 
-    
+
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
         # Simplest possible answer: Yes, always
@@ -64,10 +64,5 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
-    @property
-    def is_employee(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_admin
 
 
