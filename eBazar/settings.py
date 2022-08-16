@@ -165,4 +165,4 @@ EMAIL_PORT = '2525'
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 AUTH_USER_MODEL = 'users.MyUser'
-
+LOGIN_REDIRECT_URL = 'home'
