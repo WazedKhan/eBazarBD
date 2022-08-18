@@ -6,7 +6,7 @@ from product.models import Product
 # Create your models here.
 
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_user')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='order_user')
     full_name = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     post_code =models.CharField(max_length=10)

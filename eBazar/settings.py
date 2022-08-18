@@ -33,8 +33,9 @@ INSTALLED_APPS = [
 
     # Apps
     'cart.apps.CartConfig',
-    'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
+    'product.apps.ProductConfig',
+    'accounts.apps.AccountsConfig',
 
     # Package
     'crispy_forms',
@@ -162,5 +163,5 @@ EMAIL_PORT = '2525'
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = 'home'
