@@ -32,11 +32,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps
-    'users.apps.UsersConfig',
     'cart.apps.CartConfig',
     'product.apps.ProductConfig',
     'orders.apps.OrdersConfig',
-    'controllers.apps.ControllersConfig',
 
     # Package
     'crispy_forms',
@@ -76,10 +74,10 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.RemoteUserBackend',
-        'django.contrib.auth.backends.ModelBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#         'django.contrib.auth.backends.RemoteUserBackend',
+#         'django.contrib.auth.backends.ModelBackend',
+# )
 
 WSGI_APPLICATION = 'eBazar.wsgi.application'
 
@@ -164,5 +162,5 @@ EMAIL_PORT = '2525'
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-AUTH_USER_MODEL = 'users.MyUser'
+# AUTH_USER_MODEL = 'users.MyUser'
 LOGIN_REDIRECT_URL = 'home'
