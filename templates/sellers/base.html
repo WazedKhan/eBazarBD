@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBazarBD | Seller</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" />
+    <link rel="stylesheet" type="text/css" href="{% static 'sellers/style.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <!-- image can be add here -->
+                    <h1>eBazarBD</h1>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-symbols-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#">
+                    <span class="material-symbols-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-sharp">grading</span>
+                    <h3>Order</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-sharp">inventory_2</span>
+                    <h3>Products</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-sharp">group</span>
+                    <h3>Customers</h3>
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-sharp">payments</span>
+                    <h3>Bills</h3>
+                </a>
+
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>

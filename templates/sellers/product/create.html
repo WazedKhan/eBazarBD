@@ -1,0 +1,14 @@
+{% extends "controllers/base.html" %}
+{% load bootstrap %}
+{% block content %}
+    <div class="container mt-5 pt-5">
+        <div class="h2">
+            <i>Add New Product</i>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button class="form-group btn btn-primary btn-lg " style="margin-top: 2%;" type="submit"> Submit</button>
+        </form>
+    </div>
+{% endblock content %}
