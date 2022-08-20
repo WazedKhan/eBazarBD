@@ -47,4 +47,96 @@ body{
     font-family: poppins, Helvetica, sans-serif;
     font-size: 0.88rem;
     background: var(--color-background);
+    user-select: none;
+    overflow: hidden;
+}
+
+.container{
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+a{
+    color: var(--color-dark);
+}
+
+img{
+    display: block;
+    width: 100%;
+}
+
+h1{
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+h2{
+    font-size: 10.4rem;
+}
+
+h3{
+    font-size: 0.87rem;
+}
+h4{
+    font-size: 0.8rem;
+}
+h5{
+    font-size: 0.75rem;
+}
+
+small{
+    font-size: 0,75rem;
+}
+.profile-photo{
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-muted{
+    color: var(--color-info-dark);
+}
+
+p{
+    color: var(--color-dark-variant);
+}
+.primary{
+    color: var(--color-primary);
+}
+.danger{
+    color: var(--color-danger);
+}
+.warning{
+    color: var(--color-warning);
+}
+
+aside{
+    height: 100vh;
+    background: gray;
+}
+
+aside .top{
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .logo{
+    display: flex;
+    gap: 0.8rem;
+}
+
+aside .logo img{
+    width: 2rem;
+    height: 2rem;
+}
+
+aside .close{
+    display: none;
 }
