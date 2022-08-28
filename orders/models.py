@@ -21,7 +21,7 @@ class Order(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.full_name or self.user)
 
 
 class OrderItem(models.Model):
@@ -32,5 +32,5 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.product)
 
