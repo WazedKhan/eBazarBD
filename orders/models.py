@@ -21,7 +21,9 @@ class Order(models.Model):
         ordering = ('-created_at',)
 
     def __str__(self):
-        return str(self.full_name or self.user)
+        if self.billing_status:
+            return str(self.full_name or self.user) + ' - Confirmed'
+        return str(self.full_name or self.user) + ' - Pending'
 
 
 class OrderItem(models.Model):
