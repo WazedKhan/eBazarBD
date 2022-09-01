@@ -21,10 +21,10 @@
             <div class="col">
               <!-- .metric -->
               <a href="user-projects.html" class="metric metric-bordered align-items-center">
-                <h2 class="metric-label"> Number of product has been Ordered </h2>
+                <h2 class="metric-label"> Number of product has been confirmed </h2>
                 <p class="metric-value h3">
                   <sub> <i class="fa-solid fa-cart-circle-check"></i> </sub> <span class="value">
-                    {{ ordered_number }}
+                    {{ confirmed_items }}
                   </span>
                 </p>
               </a> <!-- /.metric -->
@@ -33,9 +33,9 @@
             <div class="col">
               <!-- .metric -->
               <a href="user-tasks.html" class="metric metric-bordered align-items-center">
-                <h2 class="metric-label"> Active Tasks </h2>
+                <h2 class="metric-label"> Number of products are in progress </h2>
                 <p class="metric-value h3">
-                  <sub><i class="fa fa-tasks"></i></sub> <span class="value">64</span>
+                  <sub><i class="fa fa-tasks"></i></sub> <span class="value">{{ in_progress_items }}</span>
                 </p>
               </a> <!-- /.metric -->
             </div><!-- /metric column -->
@@ -243,22 +243,22 @@
     <div class="card-deck-xl">
       <!-- .card -->
       <div class="card card-fluid pb-3">
-        <div class="card-header"> Active Projects </div><!-- .lits-group -->
+        <div class="card-header"> Most Visited Products </div><!-- .lits-group -->
         <div class="lits-group list-group-flush">
           <!-- .lits-group-item -->
+          {% for item in most_visited_products %}
           <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
             <div class="list-group-item-figure">
               <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-purple">LT</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/team4.jpg" alt=""></a>
+                <a href="page-project.html" class="tile tile-md bg-purple"><img src="{{ item.image.url }}" alt=""></a> <a href="#team" class="user-avatar user-avatar-xs"><img src="{{ item.image.url }}" alt=""></a>
               </div>
-            </div><!-- .lits-group-item-figure -->
+            </div>
             <!-- .lits-group-item-body -->
             <div class="list-group-item-body">
               <h5 class="card-title">
-                <a href="page-project.html">Looper Admin Theme</a>
+                <a href="page-project.html">{{ item.name }}</a>
               </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 74% - Last update 1d </p><!-- .progress -->
+              <p class="card-subtitle text-muted mb-1"> Viewed By 74% User - Last Visited: {{ item.updated_at }} </p><!-- .progress -->
               <div class="progress progress-xs bg-transparent">
                 <div class="progress-bar bg-purple" role="progressbar" aria-valuenow="2181" aria-valuemin="0" aria-valuemax="100" style="width: 74%">
                   <span class="sr-only">74% Complete</span>
@@ -266,111 +266,11 @@
               </div><!-- /.progress -->
             </div><!-- .lits-group-item-body -->
           </div><!-- /.lits-group-item -->
+
+          {% endfor %}
           <!-- .lits-group-item -->
-          <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
-            <div class="list-group-item-figure">
-              <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-indigo">SP</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/team1.jpg" alt=""></a>
-              </div>
-            </div><!-- .lits-group-item-figure -->
-            <!-- .lits-group-item-body -->
-            <div class="list-group-item-body">
-              <h5 class="card-title">
-                <a href="page-project.html">Smart Paper</a>
-              </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 22% - Last update 2h </p><!-- .progress -->
-              <div class="progress progress-xs bg-transparent">
-                <div class="progress-bar bg-indigo" role="progressbar" aria-valuenow="867" aria-valuemin="0" aria-valuemax="100" style="width: 22%">
-                  <span class="sr-only">22% Complete</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- .lits-group-item-body -->
-          </div><!-- /.lits-group-item -->
-          <!-- .lits-group-item -->
-          <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
-            <div class="list-group-item-figure">
-              <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-yellow">OS</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/team2.png" alt=""></a>
-              </div>
-            </div><!-- .lits-group-item-figure -->
-            <!-- .lits-group-item-body -->
-            <div class="list-group-item-body">
-              <h5 class="card-title">
-                <a href="page-project.html">Online Store</a>
-              </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 99% - Last update 2d </p><!-- .progress -->
-              <div class="progress progress-xs bg-transparent">
-                <div class="progress-bar bg-yellow" role="progressbar" aria-valuenow="6683" aria-valuemin="0" aria-valuemax="100" style="width: 99%">
-                  <span class="sr-only">99% Complete</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- .lits-group-item-body -->
-          </div><!-- /.lits-group-item -->
-          <!-- .lits-group-item -->
-          <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
-            <div class="list-group-item-figure">
-              <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-blue">BA</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/bootstrap.svg" alt=""></a>
-              </div>
-            </div><!-- .lits-group-item-figure -->
-            <!-- .lits-group-item-body -->
-            <div class="list-group-item-body">
-              <h5 class="card-title">
-                <a href="page-project.html">Booking App</a>
-              </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 35% - Last update 4h </p><!-- .progress -->
-              <div class="progress progress-xs bg-transparent">
-                <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="112" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-                  <span class="sr-only">35% Complete</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- .lits-group-item-body -->
-          </div><!-- /.lits-group-item -->
-          <!-- .lits-group-item -->
-          <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
-            <div class="list-group-item-figure">
-              <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-teal">SB</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/sketch.svg" alt=""></a>
-              </div>
-            </div><!-- .lits-group-item-figure -->
-            <!-- .lits-group-item-body -->
-            <div class="list-group-item-body">
-              <h5 class="card-title">
-                <a href="page-project.html">SVG Icon Bundle</a>
-              </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 32% - Last update 1d </p><!-- .progress -->
-              <div class="progress progress-xs bg-transparent">
-                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="461" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
-                  <span class="sr-only">32% Complete</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- .lits-group-item-body -->
-          </div><!-- /.lits-group-item -->
-          <!-- .lits-group-item -->
-          <div class="list-group-item">
-            <!-- .lits-group-item-figure -->
-            <div class="list-group-item-figure">
-              <div class="has-badge">
-                <a href="page-project.html" class="tile tile-md bg-pink">SP</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/team4.jpg" alt=""></a>
-              </div>
-            </div><!-- .lits-group-item-figure -->
-            <!-- .lits-group-item-body -->
-            <div class="list-group-item-body">
-              <h5 class="card-title">
-                <a href="page-project.html">Syrena Project</a>
-              </h5>
-              <p class="card-subtitle text-muted mb-1"> Progress in 93% - Last update 8h </p><!-- .progress -->
-              <div class="progress progress-xs bg-transparent">
-                <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="3981" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
-                  <span class="sr-only">93% Complete</span>
-                </div>
-              </div><!-- /.progress -->
-            </div><!-- .lits-group-item-body -->
-          </div><!-- /.lits-group-item -->
+
+
         </div><!-- /.lits-group -->
       </div><!-- /.card -->
       <!-- .card -->

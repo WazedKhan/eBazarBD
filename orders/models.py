@@ -16,7 +16,6 @@ class Order(models.Model):
     total_paid = models.DecimalField(max_digits=100, decimal_places=2)
     billing_status = models.BooleanField(default=False)
 
-
     class Meta:
         ordering = ('-created_at',)
 
