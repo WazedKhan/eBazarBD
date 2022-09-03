@@ -44,4 +44,4 @@ def index(request):
 
 class ProductListView(ListView):
     model = Product
-    template_name = 'sellers/product/create.html'
+    template_name = 'sellers/product/list.html'
