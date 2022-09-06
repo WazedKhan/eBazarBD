@@ -44,4 +44,8 @@ def index(request):
 
 class ProductListView(ListView):
     model = Product
+    context_object_name = 'products'
     template_name = 'sellers/product/list.html'
+
+    def get_context_data(self, **kwargs):
+        return super().get_context_data(**kwargs)
