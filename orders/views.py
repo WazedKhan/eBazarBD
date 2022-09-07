@@ -7,10 +7,13 @@ from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
 
 from cart.cart import Cart
+# models from different apps
+from product.models import Product
 from orders.models import Order, OrderItem
 
 # Create your views here.
 def add(request):
+    # sends session cart data to cart list view page
     cart = Cart(request)
     context = {
         'user':User,
@@ -20,6 +23,7 @@ def add(request):
 
 
 def place(request):
+    # creates order to database
     cart = Cart(request)
     if request.method == 'POST':
         name = request.POST.get('full_name')
@@ -45,7 +49,16 @@ def place(request):
                 discount = Decimal(1),
                 quantity = item['quantity']
             )
+
+
+        # counts number of product sold after order has been confirm
+        for item in cart:
+            # Product.objects.get()
+            print(item['product'].totalSold(item['quantity']))
+
+        # clears session data
         cart.clear()
+
 
         # subject = 'Order Received'
         # from_email = settings.DEFAULT_FROM_EMAIL
