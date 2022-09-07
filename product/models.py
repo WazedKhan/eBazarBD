@@ -55,12 +55,23 @@ class Product(models.Model):
 
     visited = models.IntegerField(default = 0)
     last_visit = models.DateTimeField(auto_now=True)
+    total_sold = models.IntegerField(default=0)
+    total_returned = models.IntegerField(default=0)
+    refundable = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
     def countVisitor(self):
         self.visited += 1
+        self.save()
+
+    def totalSold(self):
+        self.total_sold += 1
+        self.save()
+
+    def totalReturned(self):
+        self.total_returned += 1
         self.save()
 
     def save(self):
