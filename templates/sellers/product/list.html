@@ -39,6 +39,7 @@
           <th> Prices </th>
           <th> Sold </th>
           <th> Returned </th>
+          <th> Refundable </th>
           <th> In Cart </th>
           <th> Total Earning </th>
           <th style="width:100px; min-width:100px;"> &nbsp; </th>
@@ -60,8 +61,9 @@
           <td class="align-middle"> 329 </td>
           <td class="align-middle"> {{ product.visited }} </td>
           <td class="align-middle"> BDT {{ product.price }} </td>
-          <td class="align-middle"> Not Available </td>
-          <td class="align-middle"> Not Available </td>
+          <td class="align-middle"> {{ product.total_sold }} </td>
+          <td class="align-middle"> {{ product.total_returned }} </td>
+          <td class="align-middle"> False </td>
           <td class="align-middle"> Not Available </td>
           <td class="align-middle"> Not Available </td>
           <td class="align-middle text-right">
