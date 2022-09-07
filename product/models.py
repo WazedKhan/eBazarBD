@@ -66,8 +66,8 @@ class Product(models.Model):
         self.visited += 1
         self.save()
 
-    def totalSold(self):
-        self.total_sold += 1
+    def totalSold(self, quantity):
+        self.total_sold += quantity
         self.save()
 
     def totalReturned(self):
