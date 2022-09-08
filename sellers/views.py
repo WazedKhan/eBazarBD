@@ -1,3 +1,4 @@
+from multiprocessing import context
 from orders.models import Order, OrderItem
 from django.shortcuts import render
 from product.models import Product
@@ -48,4 +49,6 @@ class ProductListView(ListView):
     template_name = 'sellers/product/list.html'
 
     def get_context_data(self, **kwargs):
-        return super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
+        print(context['products'])
+        return context
