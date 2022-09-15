@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
@@ -43,6 +44,9 @@ class User(AbstractBaseUser):
     )
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
+    phone = models.CharField(max_length=13, default='')
+    address =  models.CharField(max_length=150, default='')
     is_seller = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -70,3 +74,11 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+    # if any problem come regarding to creating a new user or user slug just uncomment and remove last super method
+    def save(self, *args, **kwargs):
+        # super(User, self).save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.first_name) + "-" + str(self.id)
+            super(User, self).save(*args, **kwargs)
+            # self.save()
